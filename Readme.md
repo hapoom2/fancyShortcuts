@@ -14,7 +14,7 @@
 ## 📸 Preview
 
 ```md
-![Preview](public/shortcutspreview.gif)
+![Preview](public/shortcutspreview.gif?raw=1)
 ```
 
 ---
