@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>New Tab</title>
+    <link rel="stylesheet" href="newtab.css" />
+  </head>
+  <body>
+    <div id="bg"></div>
+    <div class="scrim"></div>
+
+    <header class="topbar">
+      <div class="left"></div>
+
+      <div class="right">
+        <button
+          id="settingsBtn"
+          class="iconBtnTop"
+          aria-haspopup="true"
+          aria-expanded="false"
+          title="설정"
+        >
+          ⚙️
+        </button>
+
+        <!-- 설정 패널 -->
+        <div id="settingsPanel" class="panel" hidden>
+          <div class="panelTitle">설정</div>
+
+          <div class="panelRow">
+            <label class="btn">
+              배경 업로드
+              <input id="bgFile" type="file" accept="image/*" hidden />
+            </label>
+          </div>
+
+          <div class="panelRow">
+            <label class="inline">
+              배경 톤
+              <select id="tone" class="select">
+                <option value="dark">dark</option>
+                <option value="normal">원본</option>
+                <option value="bright">light</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="panelRow">
+            <label class="inline">
+              UI 톤
+              <select id="uiTone" class="select">
+                <option value="dark">dark</option>
+                <option value="light">light</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="panelRow">
+            <label class="inline">
+              아이콘 톤
+              <select id="iconTone" class="select">
+                <option value="auto">auto</option>
+                <option value="dark">dark</option>
+                <option value="light">light</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="panelRow">
+            <label class="inline">
+              Grid
+              <select id="cols" class="select">
+                <option value="4">4개</option>
+                <option value="5">5개</option>
+                <option value="6">6개</option>
+                <option value="7">7개</option>
+                <option value="8">8개</option>
+                <option value="10">10개</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="panelRow">
+            <button id="addBtn" class="btn primary">+ 숏컷 추가</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="center">
+      <div class="logo">Google</div>
+
+      <form id="searchForm" class="search" autocomplete="off">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Google 검색 또는 URL 입력"
+        />
+      </form>
+
+      <section class="shortcutsWrap">
+        <div id="grid" class="grid" aria-label="Shortcuts"></div>
+      </section>
+    </main>
+
+    <dialog id="dlg">
+      <form id="form" method="dialog" class="dialog">
+        <h2 id="dlgTitle">숏컷</h2>
+
+        <label>
+          이름
+          <input id="name" required maxlength="40" placeholder="예: GitHub" />
+        </label>
+
+        <label>
+          URL
+          <input id="url" required placeholder="https://..." />
+        </label>
+
+        <menu class="menu">
+          <button id="cancelBtn" type="button" class="btn ghost">취소</button>
+          <button id="saveBtn" value="default" class="btn primary">저장</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="newtab.js"></script>
+  </body>
+</html>

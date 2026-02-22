@@ -1,0 +1,473 @@
+:root {
+  --cols: 6;
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.72);
+  --card: rgba(0, 0, 0, 0.28);
+  --border: rgba(255, 255, 255, 0.18);
+
+  /*배경 톤*/
+  --scrim-dark: 0.55;
+  --scrim-mid: 0.18;
+  --scrim-white: 0;
+
+  /* UI 톤 */
+  --ui-bg: rgba(0, 0, 0, 0.22);
+  --ui-bg-strong: rgba(0, 0, 0, 0.3);
+  --ui-border: rgba(255, 255, 255, 0.18);
+  --ui-text: rgba(255, 255, 255, 0.92);
+  --ui-muted: rgba(255, 255, 255, 0.72);
+
+  --panel-bg: rgba(16, 16, 16, 0.86);
+  --panel-border: rgba(255, 255, 255, 0.2);
+
+  /* 아이콘(숏컷 + 설정버튼) 톤*/
+  --icon-bg: rgba(0, 0, 0, 0.25);
+  --icon-border: rgba(255, 255, 255, 0.16);
+  --icon-text: rgba(255, 255, 255, 0.92);
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    "Noto Sans KR",
+    sans-serif;
+  overflow: hidden;
+}
+
+#bg {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  background: #111;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.03);
+  filter: brightness(var(--bg-brightness)) contrast(var(--bg-contrast))
+    saturate(var(--bg-saturate));
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(
+      rgba(255, 255, 255, var(--scrim-white)),
+      rgba(255, 255, 255, var(--scrim-white))
+    ),
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, var(--scrim-mid)),
+      rgba(0, 0, 0, var(--scrim-dark))
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.topbar {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.left,
+.right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: 1px solid var(--ui-border);
+  background: var(--ui-bg);
+  color: var(--ui-text);
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.btn.primary {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--ui-border);
+  background: var(--ui-bg);
+  backdrop-filter: blur(10px);
+  color: var(--ui-muted);
+}
+
+.select {
+  border: 1px solid var(--ui-border);
+  background: var(--ui-bg);
+  color: var(--ui-text);
+  border-radius: 10px;
+  padding: 8px 10px;
+  outline: none;
+}
+
+.center {
+  position: relative;
+  z-index: 2;
+  height: calc(100vh - 60px);
+  display: grid;
+  place-items: center;
+  padding: 10px 16px 30px;
+}
+
+.logo {
+  font-size: 76px;
+  font-weight: 650;
+  letter-spacing: -1px;
+  opacity: 0.92;
+  user-select: none;
+  margin-top: -10px;
+}
+
+.search {
+  width: min(680px, 92vw);
+  margin-top: 8px;
+}
+
+.search input {
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--ui-bg-strong);
+  color: var(--ui-text);
+  font-size: 16px;
+  outline: none;
+  backdrop-filter: blur(12px);
+  transition:
+    transform 120ms ease,
+    background 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+.search input:focus {
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.search input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.shortcutsWrap {
+  width: min(820px, 94vw);
+  margin-top: 18px;
+}
+
+.grid {
+  display: grid;
+  gap: 18px 18px;
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+  justify-items: center;
+}
+
+.tile {
+  width: 92px;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.iconBtn {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: var(--icon-bg);
+  border: 1px solid var(--icon-border);
+  color: var(--icon-text);
+  backdrop-filter: blur(10px);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    transform 120ms ease,
+    background 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.iconBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.favicon {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+}
+
+.fallback {
+  font-weight: 800;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.label {
+  width: 92px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text);
+  opacity: 0.92;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tileActions {
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: 120ms ease;
+}
+
+.tile:hover .tileActions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.small {
+  padding: 6px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.tile.dragging {
+  opacity: 0.6;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.dialog {
+  min-width: min(520px, 90vw);
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  background: rgba(16, 16, 16, 0.86);
+  color: var(--text);
+}
+
+.dialog label {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+.dialog input {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--text);
+}
+
+.menu {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding: 0;
+}
+
+body {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.center {
+  height: auto;
+  min-height: calc(100vh - 60px);
+  align-content: start;
+  padding: 10px 16px 40px;
+  z-index: 2;
+}
+
+.logo {
+  margin-top: 8px;
+  margin-bottom: 6px;
+}
+
+.search {
+  margin-top: 6px;
+}
+
+/* 숏컷 영역: 최대 cols 기준으로만 넓이 잡고, 화면 좁으면 94vw로 줄어듦 */
+.shortcutsWrap {
+  width: min(calc(var(--cols, 6) * 110px), 94vw);
+  margin-top: 25px; /* 검색창-숏컷 간격*/
+  padding-bottom: 18px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.iconBtnTop {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--icon-bg);
+  border: 1px solid var(--icon-border);
+  color: var(--icon-text);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  transition:
+    transform 120ms ease,
+    background 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.iconBtnTop:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.right {
+  position: relative;
+}
+
+.panel {
+  position: absolute;
+  top: 52px;
+  right: 0;
+  width: 260px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel-bg);
+  color: var(--ui-text);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.panelTitle {
+  font-weight: 750;
+  margin-bottom: 10px;
+}
+
+.panelRow {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.shortcutsWrap {
+  padding-bottom: 18px;
+}
+
+dialog {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.58);
+  backdrop-filter: blur(4px);
+}
+
+.dialog {
+  min-width: min(520px, 92vw);
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 18px;
+  background: rgba(16, 16, 16, 0.92);
+  color: var(--text);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.55);
+}
+
+.dialog h2 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+.dialog label {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.dialog input {
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(0, 0, 0, 0.24);
+  color: var(--text);
+  outline: none;
+}
+
+.dialog input:focus {
+  border-color: rgba(255, 255, 255, 0.34);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+}
+
+.menu {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding: 0;
+}
+
+.btn.primary:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.26);
+}
+
+label.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+label.btn:hover {
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+  transform: translateY(-1px);
+}
+label.btn:active {
+  transform: translateY(0px) scale(0.98);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.iconBtn:hover,
+.iconBtnTop:hover {
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+  transform: translateY(-1px);
+}
+.iconBtn:active,
+.iconBtnTop:active {
+  transform: translateY(0px) scale(0.98);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
