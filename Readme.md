@@ -14,7 +14,7 @@
 ## 📸 Preview
 
 ```md
-![Preview](public/shortcutspreview.gif?raw=1)
+![Preview](https://raw.githubusercontent.com/hapoom2/fancyShortcuts/main/public/shortcutspreview.gif)
 ```
 
 ---
